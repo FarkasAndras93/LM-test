@@ -1,52 +1,63 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { User } from '../../models/User';
+import { Subscription } from 'rxjs';
 import { LoginStoreService } from './store/login-store.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  providers: [MessageService],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-    angForm: FormGroup;
+  userForm: FormGroup;
 
-    users: Observable<User>;
-    private loginStatus: boolean;
-    private subscriptionList$: Subscription[];
+  private loginStatus: boolean;
+  private subscriptionList$: Subscription[] = [];
 
-    constructor(
-        private router: Router,
-        private fb: FormBuilder,
-        private loginStoreService: LoginStoreService
-    ) {
-        this.createForm();
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private loginStoreService: LoginStoreService,
+    private messageService: MessageService
+  ) {
+    this.createForm();
+  }
+
+  ngOnInit(): void {
+    this.subscriptionList$.push(
+      this.loginStoreService.loginStatus$.subscribe(
+        (status) => (this.loginStatus = status)
+      )
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionList$.forEach((s) => s.unsubscribe());
+  }
+
+  goToLogin(): void {
+    if (this.userForm.valid) {
+      this.router.navigate(['/home']);
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Invalid credentials!',
+      });
     }
+  }
 
-    ngOnInit(): void {
-        this.subscriptionList$.push(
-            this.loginStoreService.loginStatus$.subscribe((status) => this.loginStatus = status)
-        );
-    }
+  addUser(username, password): void {
+    this.loginStoreService.loginUser(username, password);
+  }
 
-    ngOnDestroy(): void {
-        this.subscriptionList$.forEach(s => s.unsubscribe());
-    }
-
-    goToLogin(): void {
-        this.router.navigate(['/home']);
-    }
-
-    addUser(username, password): void {
-        this.loginStoreService.loginUser(username, password);
-    }
-
-    private createForm(): void {
-        this.angForm = this.fb.group({
-            username: ['', Validators.required],
-            password: ['', Validators.required],
-        });
-    }
+  private createForm(): void {
+    this.userForm = this.fb.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
 }

@@ -1,1 +1,38 @@
-<p>home works!</p>
+<header>
+  <h1>Home</h1>
+</header>
+
+<body>
+  <section class="container">
+    <aside [ngClass]="{ expanding: isExpanding }">
+      <p-panelMenu [model]="menuItems"></p-panelMenu>
+    </aside>
+    <div class="main-body">
+      <button (click)="toggleSideBar()">Toggle Side Menu</button>
+      <div class="card custom-chart">
+        <h5>Vertical</h5>
+        <p-chart
+          type="bar"
+          [data]="basicData"
+          [options]="basicOptions"
+        ></p-chart>
+      </div>
+    </div>
+  </section>
+  <!-- <div class="grid">
+    <div class="col-fixed">
+      <p-panelMenu [model]="menuItems"></p-panelMenu>
+    </div>
+    <div class="col">
+      <p>Home page content.</p>
+      <div class="card">
+        <h5>Vertical</h5>
+        <p-chart
+          type="bar"
+          [data]="basicData"
+          [options]="basicOptions"
+        ></p-chart>
+      </div>
+    </div>
+  </div> -->
+</body>
