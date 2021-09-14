@@ -1,72 +1,52 @@
-<p>Login</p>
-<button pButton type="button" label="PrimeNg" (click)="login()"></button>
+<div class="center-it">
+  <h1>Login</h1>
 
-<!-- <span class="p-float-label">
-    <input id="float-input" type="text" pInputText />
-    <label for="float-input">Username</label>
-  </span>
-  <span class="p-float-label">
-    <input id="float-input" type="text" pInputText />
-    <label for="float-input">Password</label>
-  </span> -->
+  <form [formGroup]="userForm">
+    <div class="p-float-label">
+      <input
+        id="float-input"
+        type="text"
+        pInputText
+        formControlName="userName"
+        #username
+      />
+      <label for="float-input">Username</label>
+      <small
+        id="username-error"
+        class="p-error"
+        *ngIf="
+          userForm.controls['userName'].invalid &&
+          userForm.controls['userName'].dirty
+        "
+        >Username is empty.</small
+      >
+    </div>
 
-<div class="card">
-  <div class="card-body">
-    <form [formGroup]="angForm">
-      <div class="form-group">
-        <label class="col-md-4">Username</label>
-        <input
-          type="text"
-          class="form-control"
-          formControlName="username"
-          #username
-        />
-        <div
-          *ngIf="
-            angForm.controls['username'].invalid &&
-            (angForm.controls['username'].dirty ||
-              angForm.controls['username'].touched)
-          "
-          class="alert alert-danger"
-        >
-          <div *ngIf="angForm.controls['username'].errors.required">
-            Username is required.
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-4">Password</label>
-        <input
-          type="email"
-          class="form-control"
-          formControlName="password"
-          #password
-        />
-        <div
-          *ngIf="
-            angForm.controls['password'].invalid &&
-            (angForm.controls['password'].dirty ||
-              angForm.controls['password'].touched)
-          "
-          class="alert alert-danger"
-        >
-          <div *ngIf="angForm.controls['password'].errors.required">
-            Password is required.
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button
-          (click)="addUser(username.value, password.value)"
-          class="btn btn-primary"
-          [disabled]="angForm.pristine || angForm.invalid"
-        >
-          Store User
-        </button>
-      </div>
-    </form>
-  </div>
+    <div class="p-float-label">
+      <input
+        id="float-input"
+        type="text"
+        pInputText
+        formControlName="password"
+        #username
+      />
+      <label for="float-input">Password</label>
+      <small
+        id="password-error"
+        class="p-error"
+        *ngIf="
+          userForm.controls['password'].invalid &&
+          userForm.controls['password'].dirty
+        "
+        >Password is empty.</small
+      >
+    </div>
+  </form>
+
+  <button pButton type="button" label="Login" (click)="login()"></button>
 </div>
+
+<p-toast position="center"></p-toast>
 
 <div *ngIf="users">
   <table class="table table-striped">

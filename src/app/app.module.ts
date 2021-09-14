@@ -9,10 +9,16 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuModule } from 'primeng/menu';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent],
   imports: [
+    BrowserAnimationsModule,
     NgxsModule.forRoot([UserState]),
     // NgxsReduxDevtoolsPluginModule.forRoot(),
     // NgxsLoggerPluginModule.forRoot(),
@@ -21,6 +27,10 @@ import { InputTextModule } from 'primeng/inputtext';
     ButtonModule,
     ReactiveFormsModule,
     InputTextModule,
+    ToastModule,
+    MenuModule,
+    PanelMenuModule,
+    ChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
