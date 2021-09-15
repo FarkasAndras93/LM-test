@@ -1,4 +1,3 @@
-import { AvsAnalysisModule } from './modules/avs-analysis/avs-analysis.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,7 +28,6 @@ import { CustomRouterStateSerializer } from './modules/utils/router-state-serial
     PanelMenuModule,
     LoginModule,
     HomeModule,
-    AvsAnalysisModule,
   ],
   providers: [
     LoginStoreService,

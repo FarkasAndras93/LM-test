@@ -71,19 +71,39 @@ export class AppComponent implements OnDestroy {
         routerLink: '/avs-analysis',
       },
       {
-        label: 'Liquiditatsplanung',
+        label: 'Liquiditätsplanung',
         items: [
           {
             label: 'Prognose',
             icon: 'pi pi-fw pi-plus',
           },
-          { label: 'Ereignisse', icon: 'pi pi-fw pi-external-link' },
-          { label: 'Autom. Liquiditat', icon: 'pi pi-fw pi-times' },
-          { label: 'Investitionsplaner', icon: 'pi pi-fw pi-times' },
-          { label: 'Bankdaten', icon: 'pi pi-fw pi-times' },
+          {
+            label: 'Ereignisse',
+            icon: 'pi pi-fw pi-external-link',
+            routerLink: '/events',
+          },
+          {
+            label: 'Autom. Liquidität',
+            icon: 'pi pi-fw pi-times',
+            routerLink: '/auto-liquidity-management',
+          },
+          {
+            label: 'Investitionsplaner',
+            icon: 'pi pi-fw pi-times',
+            routerLink: '/investment-planner',
+          },
+          {
+            label: 'Bankdaten',
+            icon: 'pi pi-fw pi-times',
+            routerLink: '/bank-data',
+          },
         ],
       },
-      { label: 'Liquiditatszertifikat', icon: 'pi pi-download' },
+      {
+        label: 'Liquiditätszertifikat',
+        icon: 'pi pi-download',
+        routerLink: '/liquidity-certificate',
+      },
       {
         label: 'Logout',
         icon: 'pi pi-arrow-circle-left',
