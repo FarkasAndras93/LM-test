@@ -1,9 +1,15 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
-import { catchError, tap } from 'rxjs/operators';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { UserTypeEnum } from '../../../models/login/user-type.enum';
-import { Login, LoginCompleted, LoginFailed } from './login.actions';
+import {
+  Login,
+  LoginCompleted,
+  LoginFailed,
+  Logout,
+  LogoutCompleted,
+  LogoutFailed,
+} from './login.actions';
 
 export interface LoginStateModel {
   status: boolean;
@@ -92,5 +98,23 @@ export class LoginState {
       status: false,
     });
     console.error('Failed to login:', error);
+  }
+
+  @Action(Logout)
+  public logoutUser(ctx: StateContext<LoginStateModel>): void {
+    // TODO - some cache clean which can fail?
+    ctx.dispatch(new LogoutCompleted());
+  }
+
+  @Action(LogoutCompleted)
+  public logoutCompleted(ctx: StateContext<LoginStateModel>): void {
+    ctx.patchState({
+      status: false,
+    });
+  }
+
+  @Action(LogoutFailed)
+  public logoutFailed(error: HttpErrorResponse): void {
+    console.error('Failed to logout:', error);
   }
 }

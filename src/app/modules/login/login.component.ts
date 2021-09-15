@@ -14,9 +14,6 @@ import { MessageService } from 'primeng/api';
 export class LoginComponent implements OnInit, OnDestroy {
   userForm: FormGroup;
 
-  private loginStatus: boolean;
-  private subscriptionList$: Subscription[] = [];
-
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -26,17 +23,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.createForm();
   }
 
-  ngOnInit(): void {
-    this.subscriptionList$.push(
-      this.loginStoreService.loginStatus$.subscribe((status) => {
-        this.loginStatus = status;
-      })
-    );
-  }
+  ngOnInit(): void {}
 
-  ngOnDestroy(): void {
-    this.subscriptionList$.forEach((s) => s.unsubscribe());
-  }
+  ngOnDestroy(): void {}
 
   goToLogin(): void {
     if (this.userForm.valid) {

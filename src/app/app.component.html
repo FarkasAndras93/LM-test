@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<body>
+  <section class="container">
+    <aside [ngClass]="{ expanding: menuOpened }">
+      <p-panelMenu [model]="menuItems"></p-panelMenu>
+    </aside>
+    <div class="main-body">
+      <button (click)="toggleMenu()">Toggle Side Menu</button>
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</body>

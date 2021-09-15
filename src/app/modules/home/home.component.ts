@@ -7,43 +7,14 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public menuItems: MenuItem[];
-
   public basicData: any;
 
   public basicOptions: any;
 
   constructor() {}
 
-  isExpanding = true;
-  toggleSideBar(): void {
-    this.isExpanding = !this.isExpanding;
-  }
-
   ngOnInit(): void {
-    this.initMenu();
     this.initChart();
-  }
-
-  private initMenu(): void {
-    this.menuItems = [
-      { label: 'Dashboard', icon: 'pi pi-plus' },
-      { label: 'AVS Analyse', icon: 'pi pi-download' },
-      {
-        label: 'Liquiditatsplanung',
-        items: [
-          {
-            label: 'Prognose',
-            icon: 'pi pi-fw pi-plus',
-          },
-          { label: 'Ereignisse', icon: 'pi pi-fw pi-external-link' },
-          { label: 'Autom. Liquiditat', icon: 'pi pi-fw pi-times' },
-          { label: 'Investitionsplaner', icon: 'pi pi-fw pi-times' },
-          { label: 'Bankdaten', icon: 'pi pi-fw pi-times' },
-        ],
-      },
-      { label: 'Liquiditatszertifikat', icon: 'pi pi-download' },
-    ];
   }
 
   private initChart(): void {
