@@ -1,3 +1,5 @@
+import { NgxsModule } from '@ngxs/store';
+import { LoginState } from './store/login.state';
 import { ToastModule } from 'primeng/toast';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +16,7 @@ import { ButtonModule } from 'primeng/button';
     ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
+    NgxsModule.forRoot([LoginState]),
   ],
 })
 export class LoginModule {}

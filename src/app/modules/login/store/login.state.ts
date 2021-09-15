@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, tap } from 'rxjs/operators';
@@ -60,7 +61,8 @@ export class LoginState {
     // usually it is generated from swagger.
     // return this.controller.loginRequest(action.params).pipe(
     //   tap((status: boolean) =>
-    //     ctx.dispatch(new LoginCompleted(status, action.params.username))
+    // ctx.dispatch(new LoginCompleted(status, action.params.username))
+    ctx.dispatch(new LoginCompleted(true, action.params.username));
     //   ),
     //   catchError((error) => {
     //     return ctx.dispatch(new LoginFailed(error));
@@ -79,5 +81,16 @@ export class LoginState {
     if (action.status) {
       ctx.patchState({ userName: action.userName });
     }
+  }
+
+  @Action(LoginFailed)
+  public loginUserFailed(
+    ctx: StateContext<LoginStateModel>,
+    error: HttpErrorResponse
+  ): void {
+    ctx.patchState({
+      status: false,
+    });
+    console.error('Failed to login:', error);
   }
 }

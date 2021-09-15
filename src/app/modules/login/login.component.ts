@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptionList$.push(
-      this.loginStoreService.loginStatus$.subscribe(
-        (status) => (this.loginStatus = status)
-      )
+      this.loginStoreService.loginStatus$.subscribe((status) => {
+        this.loginStatus = status;
+      })
     );
   }
 
@@ -40,6 +40,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   goToLogin(): void {
     if (this.userForm.valid) {
+      this.loginStoreService.loginUser(
+        this.userForm.get('userName').value,
+        this.userForm.get('password').value
+      );
       this.router.navigate(['/home']);
     } else {
       this.messageService.add({
@@ -48,10 +52,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         detail: 'Invalid credentials!',
       });
     }
-  }
-
-  addUser(username, password): void {
-    this.loginStoreService.loginUser(username, password);
   }
 
   private createForm(): void {
