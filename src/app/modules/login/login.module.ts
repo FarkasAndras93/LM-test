@@ -1,3 +1,4 @@
+import { RouterModule, Routes } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 import { LoginState } from './store/login.state';
 import { ToastModule } from 'primeng/toast';
@@ -8,9 +9,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 
+const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent,
+  },
+];
 @NgModule({
   declarations: [LoginComponent],
   imports: [
+    RouterModule.forChild(routes),
     CommonModule,
     ToastModule,
     ReactiveFormsModule,

@@ -1,17 +1,18 @@
 import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
+import { NgModule } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
+import { AvsAnalysisComponent } from './avs-analysis.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: AvsAnalysisComponent,
   },
 ];
+
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [AvsAnalysisComponent],
   imports: [RouterModule.forChild(routes), CommonModule, ChartModule],
 })
-export class HomeModule {}
+export class AvsAnalysisModule {}

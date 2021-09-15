@@ -65,7 +65,11 @@ export class AppComponent implements OnDestroy {
   private initLoggedInMenu(): void {
     this.menuItems = [
       { label: 'Dashboard', icon: 'pi pi-plus' },
-      { label: 'AVS Analyse', icon: 'pi pi-download' },
+      {
+        label: 'AVS Analyse',
+        icon: 'pi pi-download',
+        routerLink: '/avs-analysis',
+      },
       {
         label: 'Liquiditatsplanung',
         items: [
