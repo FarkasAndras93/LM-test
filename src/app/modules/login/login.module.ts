@@ -1,3 +1,4 @@
+import { LoginRoute } from './../../services/routing/login-route.service';
 import { RouterModule, Routes } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 import { LoginState } from './store/login.state';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
+    canLoad: [LoginRoute],
   },
 ];
 @NgModule({

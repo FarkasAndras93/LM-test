@@ -1,3 +1,4 @@
+import { LoginRoute } from './services/routing/login-route.service';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -7,13 +8,13 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('./modules/login/login.module').then((m) => m.LoginModule),
-    // TODO - add canLoad
+    canLoad: [LoginRoute],
   },
   {
     path: 'home',
     loadChildren: () =>
       import('./modules/home/home.module').then((m) => m.HomeModule),
-    // TODO - add canLoad
+    canLoad: [LoginRoute],
   },
   {
     path: 'avs-analysis',
@@ -21,7 +22,7 @@ const routes: Routes = [
       import('./modules/avs-analysis/avs-analysis.module').then(
         (m) => m.AvsAnalysisModule
       ),
-    // TODO - add canLoad
+    canLoad: [LoginRoute],
   },
   {
     path: 'auto-liquidity-management',
@@ -29,7 +30,7 @@ const routes: Routes = [
       import(
         './modules/auto-liquidity-management/auto-liquidity-management.module'
       ).then((m) => m.AutoLiquidityManagementModule),
-    // TODO - add canLoad
+    canLoad: [LoginRoute],
   },
   {
     path: 'liquidity-certificate',
@@ -37,7 +38,7 @@ const routes: Routes = [
       import(
         './modules/liquidity-certificate/liquidity-certificate.module'
       ).then((m) => m.LiquidityCertificateModule),
-    // TODO - add canLoad
+    canLoad: [LoginRoute],
   },
   {
     path: 'bank-data',
@@ -45,13 +46,13 @@ const routes: Routes = [
       import('./modules/bank-data/bank-data.module').then(
         (m) => m.BankDataModule
       ),
-    // TODO - add canLoad
+    canLoad: [LoginRoute],
   },
   {
     path: 'events',
     loadChildren: () =>
       import('./modules/events/events.module').then((m) => m.EventsModule),
-    // TODO - add canLoad
+    canLoad: [LoginRoute],
   },
   {
     path: 'investment-planner',
@@ -59,7 +60,7 @@ const routes: Routes = [
       import('./modules/investment-planner/investment-planner.module').then(
         (m) => m.InvestmentPlannerModule
       ),
-    // TODO - add canLoad
+    canLoad: [LoginRoute],
   },
 ];
 

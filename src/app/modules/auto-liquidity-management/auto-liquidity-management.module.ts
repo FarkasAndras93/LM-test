@@ -1,3 +1,4 @@
+import { LoginRoute } from './../../services/routing/login-route.service';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: AutoLiquidityManagementComponent,
+    canLoad: [LoginRoute],
   },
 ];
 
